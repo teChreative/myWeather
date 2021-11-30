@@ -26,7 +26,7 @@ window.addEventListener("load", () => {
           
           // console.log(name);
           // console.log(temp);
-          // console.log(main);
+          console.log(main);
           
           // Set DOM Elements from the API
           temperatureDegree.textContent = temp;
