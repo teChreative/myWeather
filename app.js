@@ -7,6 +7,7 @@ window.addEventListener("load", () => {
   let locationTimezone = document.querySelector('.location-timezone');
   let temperatureSection = document.querySelector('.temperature');
   const temperatureSpan = document.querySelector('.temperature span');
+  
 
   const successCallback = (pos) => {
   var lat = pos.coords.latitude;
@@ -23,17 +24,25 @@ window.addEventListener("load", () => {
           const { temp } = data.main;
           const { name } = data;
           const { main } = data.weather[0];
+          const { icon } = data.weather[0];
           
           // console.log(name);
           // console.log(temp);
-          console.log(main);
+          // console.log("icon ", icon);
           
           // Set DOM Elements from the API
           temperatureDegree.textContent = temp;
           temperatureDescription.textContent = main;
           locationTimezone.textContent = name;
+          
           // Formula for Celsius
           let celsius = (temp - 32) * (5 / 9);
+
+          // Set Icon
+          var img = document.createElement('img');
+          img.src = "https://openweathermap.org/img/wn/"+icon+"@2x.png";
+          document.getElementById('wicon').appendChild(img);
+          
           
           // Change temperature
           temperatureSection.addEventListener('click', () => {
@@ -53,4 +62,5 @@ window.addEventListener("load", () => {
   };
 
   navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+
 });
